@@ -1,0 +1,86 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+}
+
+.checkout-container {
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 15px 45px rgba(35, 20, 80, 0.25);
+}
+
+.checkout-container h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #764ba2;
+  margin-bottom: 35px;
+}
+
+.checkout-container h2 {
+  color: #5b4baf;
+  border-bottom: 2px solid #eee5ff;
+  padding-bottom: 12px;
+}
+
+.checkout-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checkout-container label {
+  color: #493c70;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.checkout-container input,
+.checkout-container textarea,
+.checkout-container select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 2px solid #e5dcfa;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #faf8ff;
+  outline: none;
+  transition: 0.3s;
+}
+
+.checkout-container input:focus,
+.checkout-container textarea:focus,
+.checkout-container select:focus {
+  border-color: #8b5cf6;
+  background: white;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.2);
+}
+
+.checkout-container textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.checkout-container button {
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #ec4899);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-container button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
+}

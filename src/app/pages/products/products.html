@@ -1,0 +1,70 @@
+
+<div class="products-container">
+
+  <h1>Explore Our Products 🛍️</h1>
+  <p class="subtitle">Discover amazing products at amazing prices!</p>
+
+  <div class="products-grid">
+
+    @if (!searchText || 'smartphone'.includes(searchText)) {
+      <div class="product-card smartphone">
+        <div class="product-icon">📱</div>
+        <h2>Smartphone</h2>
+        <p>Powerful performance and amazing camera.</p>
+        <h3>₹15,000</h3>
+        <button (click)="addProduct({name: 'Smartphone', price: 15000})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    }
+
+    @if (!searchText || 'headphones'.includes(searchText)) {
+      <div class="product-card headphones">
+        <div class="product-icon">🎧</div>
+        <h2>Headphones</h2>
+        <p>Enjoy crystal-clear sound and comfort.</p>
+        <h3>₹2,000</h3>
+        <button (click)="addProduct({name: 'Headphones', price: 2000})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    }
+
+    @if (!searchText || 'smart watch'.includes(searchText)) {
+      <div class="product-card smartwatch">
+        <div class="product-icon">⌚</div>
+        <h2>Smart Watch</h2>
+        <p>Stay connected and track your fitness.</p>
+        <h3>₹3,500</h3>
+        <button (click)="addProduct({name: 'Smart Watch', price: 3500})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    }
+
+    @if (!searchText || 'laptop'.includes(searchText)) {
+      <div class="product-card laptop">
+        <div class="product-icon">💻</div>
+        <h2>Laptop</h2>
+        <p>Work, create and enjoy powerful performance.</p>
+        <h3>₹55,000</h3>
+        <button (click)="addProduct({name: 'Laptop', price: 55000})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    }
+
+  </div>
+
+  @if (searchText &&
+      !'smartphone'.includes(searchText) &&
+      !'headphones'.includes(searchText) &&
+      !'smart watch'.includes(searchText) &&
+      !'laptop'.includes(searchText)) {
+    <div class="no-results">
+      <h2>😕 No products found!</h2>
+      <p>Try searching for Smartphone, Headphones, Smart Watch or Laptop.</p>
+    </div>
+  }
+
+</div>
