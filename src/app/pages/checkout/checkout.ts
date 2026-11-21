@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './checkout.css',
 })
 export class Checkout {
-
   fullName = '';
   email = '';
   phone = '';

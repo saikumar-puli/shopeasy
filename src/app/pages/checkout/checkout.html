@@ -1,10 +1,10 @@
 
 <div class="checkout-container">
 
-  <h1>Checkout 🛒</h1>
+  <h1>Checkout 🛍️</h1>
 
   <div class="order-summary">
-    <h2>Order Summary 📦</h2>
+    <h2>📦 Order Summary</h2>
 
     @if (cartItems.length > 0) {
       @for (item of cartItems; track $index) {
@@ -15,66 +15,77 @@
           <p>Subtotal: ₹{{ item.price * item.quantity }}</p>
         </div>
       }
-
-      <h2 class="total">Total Amount: ₹{{ getTotal() }}</h2>
+      <h2 class="total">Total: ₹{{ getTotal() }}</h2>
     } @else {
-      <p>Your cart is empty. Please add products before checkout.</p>
+      <p class="empty-cart">Your cart is empty.</p>
     }
   </div>
 
-  <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()">
+  <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()" novalidate>
 
-    <h2>Delivery Details</h2>
+    <h2>🚚 Delivery Details</h2>
 
-    <label>Full Name</label>
-    <input
-      type="text"
-      name="fullName"
-      [(ngModel)]="fullName"
-      placeholder="Enter your full name"
-      required
-    >
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" name="fullName"
+        [(ngModel)]="fullName" #nameField="ngModel"
+        placeholder="Enter your full name"
+        required minlength="3" pattern="[A-Za-z ]+" />
+      @if (nameField.invalid && nameField.touched) {
+        <small class="error">Enter a valid name (minimum 3 letters).</small>
+      }
+    </div>
 
-    <label>Email Address</label>
-    <input
-      type="email"
-      name="email"
-      [(ngModel)]="email"
-      placeholder="Enter your email"
-      required
-    >
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" name="email"
+        [(ngModel)]="email" #emailField="ngModel"
+        placeholder="Enter your email"
+        required email />
+      @if (emailField.invalid && emailField.touched) {
+        <small class="error">Enter a valid email address.</small>
+      }
+    </div>
 
-    <label>Phone Number</label>
-    <input
-      type="tel"
-      name="phone"
-      [(ngModel)]="phone"
-      placeholder="Enter your phone number"
-      required
-    >
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" name="phone"
+        [(ngModel)]="phone" #phoneField="ngModel"
+        placeholder="Enter 10-digit phone number"
+        required pattern="[6-9][0-9]{9}" maxlength="10" />
+      @if (phoneField.invalid && phoneField.touched) {
+        <small class="error">Enter a valid 10-digit mobile number.</small>
+      }
+    </div>
 
-    <label>Delivery Address</label>
-    <textarea
-      name="address"
-      [(ngModel)]="address"
-      placeholder="Enter your full address"
-      required
-    ></textarea>
+    <div class="form-group">
+      <label>Delivery Address</label>
+      <textarea name="address"
+        [(ngModel)]="address" #addressField="ngModel"
+        placeholder="Enter your complete delivery address"
+        required minlength="10"></textarea>
+      @if (addressField.invalid && addressField.touched) {
+        <small class="error">Enter an address of at least 10 characters.</small>
+      }
+    </div>
 
-    <label>Payment Method</label>
-    <select
-      name="paymentMethod"
-      [(ngModel)]="paymentMethod"
-      required
-    >
-      <option value="">Select payment method</option>
-      <option value="cod">Cash on Delivery</option>
-      <option value="upi">UPI</option>
-      <option value="card">Credit/Debit Card</option>
-    </select>
+    <div class="form-group">
+      <label>Payment Method</label>
+      <select name="paymentMethod"
+        [(ngModel)]="paymentMethod" #paymentField="ngModel" required>
+        <option value="">Select payment method</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="upi">UPI</option>
+        <option value="card">Credit/Debit Card</option>
+      </select>
+      @if (paymentField.invalid && paymentField.touched) {
+        <small class="error">Please select a payment method.</small>
+      }
+    </div>
 
-    <button type="submit" [disabled]="checkoutForm.invalid">
-      Place Order
+    <button type="submit"
+      [disabled]="checkoutForm.invalid || cartItems.length === 0">
+      Place Order 🎉
     </button>
 
   </form>
@@ -82,7 +93,7 @@
   @if (orderPlaced) {
     <div class="success-message">
       <h2>🎉 Order Placed Successfully!</h2>
-      <p>Thank you for shopping with ShopEasy!</p>
+      <p>Thank you for shopping with ShopEasy ❤️</p>
     </div>
   }
 
